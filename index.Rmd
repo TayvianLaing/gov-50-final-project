@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Tay'vian Laing"
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,7 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to the amount of black lawyers through a certain time frame.
+Also, I am interested in exploring data related to the amount of black corporate lawyers in top notch law firms or
+how many black corporate lawyers excel to become senior partner. 
+Ultimately, I am interested in exploring data around black lawyers. 
