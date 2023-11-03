@@ -110,12 +110,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Gov 50 Final Project"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Tay'vian Laing"]}]}]},{"type":"character","attributes":{},"value":["My final project"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","output","editor_options"]}},"value":[{"type":"character","attributes":{},"value":["Gov 50 Final Project"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Tay'vian Laing"]}]}]},{"type":"character","attributes":{},"value":["My final project"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["markdown"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["wrap"]}},"value":[{"type":"character","attributes":{},"value":["sentence"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["coefs.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","Tax rankings.csv","union-with-ranks.csv"]}
+  {"type":"character","attributes":{},"value":["coefs.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-1-2.png","index_files/figure-html5/unnamed-chunk-1-3.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","Tax rankings.csv","union-with-ranks.csv"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1519,8 +1519,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
 <p>I am interested in exploring data related to the amount of black lawyers through a certain time frame.
-Also, I am interested in exploring data related to the amount of black corporate lawyers in top notch law firms or
-how many black corporate lawyers excel to become senior partner.
+Also, I am interested in exploring data related to the amount of black corporate lawyers in top notch law firms or how many black corporate lawyers excel to become senior partner.
 Ultimately, I am interested in exploring data around black lawyers.</p>
 <h2 id="project-research-question-hypothesis">Project Research Question &amp; Hypothesis</h2>
 <p>Does having a better ranked legal representation actually correlate with the success of litigation cases?
@@ -1533,7 +1532,33 @@ These ranks will be used for analysis to see how different outcomes can be in ou
 In this study, our outcome variable will be the outcomes in tax litigation.
 This will be measured by seeing the results in which higher ranking lawyers successfully litigate compared to lower ranked lawyers.
 The observed pattern that will prove my hypothesis would be the results in which better ranked lawyers have successfully litigated.
-On the other hand, if more lower ranking lawyers successfully litigate more than higher ranking lawyers, then that would disprove my hypothesis. In analyzing these patterns, the answer to the research question will be answered.</p>
+On the other hand, if more lower ranking lawyers successfully litigate more than higher ranking lawyers, then that would disprove my hypothesis.
+In analyzing these patterns, the answer to the research question will be answered.</p>
+<h2 id="data-visualization">Data Visualization</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span></span>
+<span><span class='va'>union_with_ranks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"union-with-ranks.csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>appellants</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AppType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Appellant Type"</span>, y <span class='op'>=</span> <span class='st'>"Appellants"</span><span class='op'>)</span></span>
+<span><span class='va'>appellants</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>respondents</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>RespType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Respondent Type"</span>, y <span class='op'>=</span> <span class='st'>"Respondents"</span><span class='op'>)</span></span>
+<span><span class='va'>respondents</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-1-2.png" width="624" /></p>
+</div>
+<p>The graphs above represent the two types of lawyers in this study, the appellants and the respondents.
+As shown above, both the respondents and the appellants are mostly backed up by the government in comparison to the other available types.
+Another key observation that I noticed is that there are less individual respondent types in comparison to the amount of appellant individual types.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
