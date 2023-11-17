@@ -1559,6 +1559,19 @@ In analyzing these patterns, the answer to the research question will be answere
 <p>The graphs above represent the two types of lawyers in this study, the appellants and the respondents.
 As shown above, both the respondents and the appellants are mostly backed up by the government in comparison to the other available types.
 Another key observation that I noticed is that there are less individual respondent types in comparison to the amount of appellant individual types.</p>
+<h2 id="analysis">Analysis</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>apptype</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Outcome</span>, <span class='va'>AppType</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>app.rank1</span>,</span>
+<span>               values_from <span class='op'>=</span> <span class='va'>Outcome</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>To answer my research question, the better represented a litigator is doesn’t necessarily mean that there is a correlation between their success in court.
+I previously hypothesized that there would be a positive correlation between the rate of success in court and how good one litigator is represented.
+However, this shows that my hypothesis was wrong and there is no correlation to be found.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

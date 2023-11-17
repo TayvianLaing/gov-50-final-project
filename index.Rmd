@@ -54,3 +54,17 @@ respondents
 The graphs above represent the two types of lawyers in this study, the appellants and the respondents.
 As shown above, both the respondents and the appellants are mostly backed up by the government in comparison to the other available types.
 Another key observation that I noticed is that there are less individual respondent types in comparison to the amount of appellant individual types.
+
+## Analysis
+
+```{r}
+apptype <- union_with_ranks |>
+  group_by(Outcome, AppType) |>
+  pivot_wider(names_from = app.rank1,
+               values_from = Outcome) |>
+  knitr::kable()
+```
+
+To answer my research question, the better represented a litigator is doesn't necessarily mean that there is a correlation between their success in court.
+I previously hypothesized that there would be a positive correlation between the rate of success in court and how good one litigator is represented.
+However, this shows that my hypothesis was wrong and there is no correlation to be found.
