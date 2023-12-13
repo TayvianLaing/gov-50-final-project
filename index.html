@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["coefs.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-1-2.png","index_files/figure-html5/unnamed-chunk-1-3.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","Tax rankings.csv","union-with-ranks.csv"]}
+  {"type":"character","attributes":{},"value":["coefs.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-1-2.png","index_files/figure-html5/unnamed-chunk-1-3.png","index_files/figure-html5/unnamed-chunk-1-4.png","index_files/figure-html5/unnamed-chunk-1-5.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-3-2.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","Tax rankings.csv","union-with-ranks.csv"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.24/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1517,16 +1519,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to the amount of black lawyers through a certain time frame.
-Also, I am interested in exploring data related to the amount of black corporate lawyers in top notch law firms or how many black corporate lawyers excel to become senior partner.
-Ultimately, I am interested in exploring data around black lawyers.</p>
-<h2 id="project-research-question-hypothesis">Project Research Question &amp; Hypothesis</h2>
-<p>Does having a better ranked legal representation actually correlate with the success of litigation cases?
+<h2 id="introduction">Introduction</h2>
+<p>The research question that I have decided to conduct is does having a better type of legal representation actually correlate with the success of litigation cases?
 In this study, I plan to compare the success of litigators who have better ranked legal representation to those who do not have as good representation.
+Additionally, I plan to look into the different types of appellants and respondents to get a sense of what types succeed the most in court.
+I think that this question is important because it’s good to see if there’s any inequalities between firms.
+What I mean by this is, if the better ranked legal representation lawyers always win, then there is a disparity between those who are not backed up by better legal representation.
 I hypothesize that better ranked legal representation does indeed correlate with the success of litigation because of the resources/prestige that comes with being represented by the best.
-I expect that it’s easier for a judge or whomever to side with a litigator from a well represented firm simply because of the renown and prestige of the firm, so the people already know what to expect from these well represented people.
-The explanatory variables in this data set are the different types of ranks that lawyers are given in the UK.
+I expect that it’s easier for a judge or whomever to side with a litigator from a well represented firm simply because of the renown and prestige of the firm, so the people already know what to expect from these well represented people.</p>
+<p> The explanatory variables in this data set are the different types of ranks that lawyers are given in the UK.
 These ranks consist of Silk, Band, Junior, and much more.
 These ranks will be used for analysis to see how different outcomes can be in our study.
 In this study, our outcome variable will be the outcomes in tax litigation.
@@ -1544,34 +1545,239 @@ In analyzing these patterns, the answer to the research question will be answere
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span></span>
 <span><span class='va'>union_with_ranks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"union-with-ranks.csv"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>appellants</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AppType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Appellant Type"</span>, y <span class='op'>=</span> <span class='st'>"Appellants"</span><span class='op'>)</span></span>
-<span><span class='va'>appellants</span></span></code></pre>
+<span><span class='va'>outcome</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Outcome</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"steelblue1"</span><span class='op'>)</span> <span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Outcome"</span>, y <span class='op'>=</span> <span class='st'>"Total Amount of Cases"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"WIn"</span>, <span class='st'>"Loss"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>outcome</span></span></code></pre>
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
 <div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>appellants</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AppType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Appellant Type"</span>, y <span class='op'>=</span> <span class='st'>"Appellants"</span><span class='op'>)</span></span>
+<span><span class='va'>appellants</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-1-2.png" width="624" />
+<div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>respondents</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>RespType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Respondent Type"</span>, y <span class='op'>=</span> <span class='st'>"Respondents"</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>RespType</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"indianred1"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Respondent Type"</span>, y <span class='op'>=</span> <span class='st'>"Respondents"</span><span class='op'>)</span></span>
 <span><span class='va'>respondents</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-1-2.png" width="624" /></p>
+<img src="index_files/figure-html5/unnamed-chunk-1-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>app_rank</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>app.rank1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"The Rankings of Appellants"</span>, y <span class='op'>=</span> <span class='st'>"Appellants"</span><span class='op'>)</span></span>
+<span><span class='va'>app_rank</span></span></code></pre>
 </div>
-<p>The graphs above represent the two types of lawyers in this study, the appellants and the respondents.
+<img src="index_files/figure-html5/unnamed-chunk-1-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>resp_rank</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>resp.rank1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"The Rankings of Respondents"</span>, y <span class='op'>=</span> <span class='st'>"Respondents"</span><span class='op'>)</span></span>
+<span><span class='va'>resp_rank</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-1-5.png" width="624" /></p>
+</div>
+<p>Above we see five graphs of visualization which includes the outcome graph, the appellants type graph, the respondents type graph, and the appellant and respondent ranks graph.
+The outcome graph displays a bar graph of whether or not an appellant wins or loses a case when they’re better backed up or not by a better ranking legal form.
+The appellants type and respondents type graphs showcase the different types of appellants and respondents that are found in this data set.
+These types range from working in the government, individual, trust, or etc.
 As shown above, both the respondents and the appellants are mostly backed up by the government in comparison to the other available types.
 Another key observation that I noticed is that there are less individual respondent types in comparison to the amount of appellant individual types.</p>
+<p>Additionally, there are two graphs displaying the ranks of the appellants and the respondents.
+These ranks are ranked from unranked junior to Star Silk.
+On the graph they are numerically represented by 1-14, with 14 being the highest ranking title.
+For a more useful explanation, 1-7 represent juniors in the UK ranking system and 8-14 represent the QC, the Queen’s Counsel.
+A key observation to note is that there are more better ranked appellants than there are respondents.
+We can see this by looking at the data near the numbers 11-14, which lie the area for the best ranks throughout the data.
+It is also key to note that this project will only be using app.rank 1 and resp.rank 1 in order to maximize data, and not use data that has missing values. </p>
 <h2 id="analysis">Analysis</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>apptype</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Outcome</span>, <span class='va'>AppType</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>app.rank1</span>,</span>
-<span>               values_from <span class='op'>=</span> <span class='va'>Outcome</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>union_with_ranks</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>win <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>1</span>,</span>
+<span>    <span class='fl'>1</span>,</span>
+<span>    <span class='fl'>0</span></span>
+<span>  <span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>reg1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>win</span> <span class='op'>~</span> <span class='va'>app.rank1</span> <span class='op'>*</span> <span class='va'>resp.rank1</span>, data <span class='op'>=</span> <span class='va'>union_with_ranks</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
-<p>To answer my research question, the better represented a litigator is doesn’t necessarily mean that there is a correlation between their success in court.
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>reg1</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>,<span class='st'>"r.squared"</span>,<span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+0.658
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.052
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+app.rank1
+</td>
+<td style="text-align:center;">
+−0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.598
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+resp.rank1
+</td>
+<td style="text-align:center;">
+−0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.432
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+app.rank1 × resp.rank1
+</td>
+<td style="text-align:center;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+462
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+−0.002
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>union_with_ranks</span> <span class='op'>&lt;-</span> <span class='va'>union_with_ranks</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>case_outcome <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>union_with_ranks</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>app.rank1</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>case_outcome</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>union_with_ranks</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>resp.rank1</span><span class='op'>)</span>, fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>case_outcome</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-2.png" width="624" /></p>
+</div>
+<p>The p value above shows that there is no correlation between the rank of an appellant or a respondent and their success in courts.
+We see this by having a higher p value than 0.05 which means that there is no statistically significant information to be shown here.
+To put it more simply said, we can not make a causal claim that there is any correlation here due to this value, which means that we cannot interpret this casually.
+The p value for app.rank 1 is 0.598 and the p value for the resp.rank 1 is 0.432, which are all higher than 0.05 which shows that we have to accept the null hypothesis and not reject it.
+Another key observation we can see from our coefficients is that there is a bigger negative correlation between success in court and the resp.rank 1 compared to the negative correlation between success in court and the app.rank 1. </p>
+<p>In addition to the regression table, I added in another bar graph that displays the relationship between the different ranks and their success in court.
+Red represents 0, which displays the amount of losses an appellant or respondent has had.
+Blue represents 1, which highlights the amount of cases an appellant or respondent wins.
+As we can see, respondents tend to lose more cases by just looking at the graph compared to appellants who tend to win more. 
+To answer my research question, the better represented a litigator is doesn’t necessarily mean that there is a correlation between their success in court.
 I previously hypothesized that there would be a positive correlation between the rate of success in court and how good one litigator is represented.
 However, this shows that my hypothesis was wrong and there is no correlation to be found.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Ultimately, the better ranking an appellant or a respondent is there has no correlation to their court success.
+This is due to my p value of the app.rank 1 and the resp.rank 1 being greater than 0.05.
+Furthermore, we can not make an causal interpretation about this relationship.
+My hypothesis was wrong, I assumed that there was a correlation between the better ranked a lawyer is and their success in court.
+I hypothesized this because I figured that the better ranked equates to the more materials and resources one can have access to.
+In addition there are limitations of the analysis.
+The limitations of the dataset is that there are lawyers who have multiple ranks which would affect the data in this project.
+Another limitation is that different lawyers are assigned with different difficult cases.
+The degree of difficulty isn't implemented into the dataset, which makes it not only hard but unfair to rightly assess the correlation between rank and court success.
+In terms of threat to inference, one of the biggest threats in my opinion would have to be an issue of reverse causality in the sense that your outcome actually changes your rank and not the other way around.
+In the sense that the more wins you get, the higher your rank can be.
+Another threat is that there are other factors that could interfere with the outcome and not just the rank. 
+If I had more time and money, I would put more time into other factors that could affect outcome and the main one that comes to mind is the difficulty of cases.
+I believe that case difficulty was overlooked, but it is one of the most important aspects in legal work.
+With more time and research, I believe that this will have a more accurate description of the relationship between the success in court and the ranks of the appellants and respondents.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

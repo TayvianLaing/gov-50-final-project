@@ -10,19 +10,17 @@ editor_options:
     wrap: sentence
 ---
 
-## Project thoughts
+## Introduction
 
-I am interested in exploring data related to the amount of black lawyers through a certain time frame.
-Also, I am interested in exploring data related to the amount of black corporate lawyers in top notch law firms or how many black corporate lawyers excel to become senior partner.
-Ultimately, I am interested in exploring data around black lawyers.
-
-## Project Research Question & Hypothesis
-
-Does having a better ranked legal representation actually correlate with the success of litigation cases?
+The research question that I have decided to conduct is does having a better type of legal representation actually correlate with the success of litigation cases?
 In this study, I plan to compare the success of litigators who have better ranked legal representation to those who do not have as good representation.
+Additionally, I plan to look into the different types of appellants and respondents to get a sense of what types succeed the most in court.
+I think that this question is important because it's good to see if there's any inequalities between firms.
+What I mean by this is, if the better ranked legal representation lawyers always win, then there is a disparity between those who are not backed up by better legal representation.
 I hypothesize that better ranked legal representation does indeed correlate with the success of litigation because of the resources/prestige that comes with being represented by the best.
 I expect that it's easier for a judge or whomever to side with a litigator from a well represented firm simply because of the renown and prestige of the firm, so the people already know what to expect from these well represented people.
-The explanatory variables in this data set are the different types of ranks that lawyers are given in the UK.
+
+ The explanatory variables in this data set are the different types of ranks that lawyers are given in the UK.
 These ranks consist of Silk, Band, Junior, and much more.
 These ranks will be used for analysis to see how different outcomes can be in our study.
 In this study, our outcome variable will be the outcomes in tax litigation.
@@ -41,30 +39,103 @@ library(readr)
 library(readr)
 union_with_ranks <- read_csv("union-with-ranks.csv")
 
+outcome <- union_with_ranks |>
+  filter(Outcome == 1 | Outcome == 3) |>
+  ggplot(mapping = aes(x = as.factor(Outcome))) + geom_bar(fill = "steelblue1") +labs(x = "Outcome", y = "Total Amount of Cases") +
+  scale_x_discrete(labels = c("WIn", "Loss"))
+outcome
+
 appellants <- union_with_ranks |>
   ggplot(mapping = aes(x = AppType)) + geom_bar(fill = "indianred1") + labs(x = "Appellant Type", y = "Appellants")
 appellants
 
 respondents <- union_with_ranks |>
-  ggplot(mapping = aes(x = RespType)) + geom_bar(aes(fill = "indianred1")) + labs(x = "Respondent Type", y = "Respondents")
+  ggplot(mapping = aes(x = RespType)) + geom_bar(fill = "indianred1") + labs(x = "Respondent Type", y = "Respondents")
 respondents
 
+app_rank <- union_with_ranks |>
+  ggplot(mapping = aes(x = app.rank1)) +geom_bar(fill = "black") + labs(x = "The Rankings of Appellants", y = "Appellants")
+app_rank
+
+resp_rank <- union_with_ranks |>
+  ggplot(mapping = aes(x = resp.rank1)) + geom_bar(fill = "black") + labs(x = "The Rankings of Respondents", y = "Respondents")
+resp_rank
 ```
 
-The graphs above represent the two types of lawyers in this study, the appellants and the respondents.
+Above we see five graphs of visualization which includes the outcome graph, the appellants type graph, the respondents type graph, and the appellant and respondent ranks graph.
+The outcome graph displays a bar graph of whether or not an appellant wins or loses a case when they're better backed up or not by a better ranking legal form.
+The appellants type and respondents type graphs showcase the different types of appellants and respondents that are found in this data set.
+These types range from working in the government, individual, trust, or etc.
 As shown above, both the respondents and the appellants are mostly backed up by the government in comparison to the other available types.
 Another key observation that I noticed is that there are less individual respondent types in comparison to the amount of appellant individual types.
+
+Additionally, there are two graphs displaying the ranks of the appellants and the respondents.
+These ranks are ranked from unranked junior to Star Silk.
+On the graph they are numerically represented by 1-14, with 14 being the highest ranking title.
+For a more useful explanation, 1-7 represent juniors in the UK ranking system and 8-14 represent the QC, the Queen's Counsel.
+A key observation to note is that there are more better ranked appellants than there are respondents.
+We can see this by looking at the data near the numbers 11-14, which lie the area for the best ranks throughout the data.
+It is also key to note that this project will only be using app.rank 1 and resp.rank 1 in order to maximize data, and not use data that has missing values. 
 
 ## Analysis
 
 ```{r}
-apptype <- union_with_ranks |>
-  group_by(Outcome, AppType) |>
-  pivot_wider(names_from = app.rank1,
-               values_from = Outcome) |>
-  knitr::kable()
+union_with_ranks <- union_with_ranks |>
+  mutate(win = if_else(
+    Outcome == 1,
+    1,
+    0
+  ))
+
+reg1 <- lm(win ~ app.rank1 * resp.rank1, data = union_with_ranks) 
+
 ```
 
+```{r}
+modelsummary::modelsummary(reg1,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs","r.squared","adj.r.squared"))
+```
+
+```{r}
+union_with_ranks <- union_with_ranks|>
+  mutate(case_outcome = if_else(Outcome == 3, 0, 1))
+
+ggplot(union_with_ranks, aes(x = factor(app.rank1), fill = factor(case_outcome))) + 
+  geom_bar()
+
+ggplot(union_with_ranks, aes(x = factor(resp.rank1), fill = factor(case_outcome))) + geom_bar()
+```
+
+The p value above shows that there is no correlation between the rank of an appellant or a respondent and their success in courts.
+We see this by having a higher p value than 0.05 which means that there is no statistically significant information to be shown here.
+To put it more simply said, we can not make a causal claim that there is any correlation here due to this value, which means that we cannot interpret this casually.
+The p value for app.rank 1 is 0.598 and the p value for the resp.rank 1 is 0.432, which are all higher than 0.05 which shows that we have to accept the null hypothesis and not reject it.
+Another key observation we can see from our coefficients is that there is a bigger negative correlation between success in court and the resp.rank 1 compared to the negative correlation between success in court and the app.rank 1. 
+
+In addition to the regression table, I added in another bar graph that displays the relationship between the different ranks and their success in court.
+Red represents 0, which displays the amount of losses an appellant or respondent has had.
+Blue represents 1, which highlights the amount of cases an appellant or respondent wins.
+As we can see, respondents tend to lose more cases by just looking at the graph compared to appellants who tend to win more. 
 To answer my research question, the better represented a litigator is doesn't necessarily mean that there is a correlation between their success in court.
 I previously hypothesized that there would be a positive correlation between the rate of success in court and how good one litigator is represented.
 However, this shows that my hypothesis was wrong and there is no correlation to be found.
+
+## Conclusion
+
+Ultimately, the better ranking an appellant or a respondent is there has no correlation to their court success.
+This is due to my p value of the app.rank 1 and the resp.rank 1 being greater than 0.05.
+Furthermore, we can not make an causal interpretation about this relationship.
+My hypothesis was wrong, I assumed that there was a correlation between the better ranked a lawyer is and their success in court.
+I hypothesized this because I figured that the better ranked equates to the more materials and resources one can have access to.
+In addition there are limitations of the analysis.
+The limitations of the dataset is that there are lawyers who have multiple ranks which would affect the data in this project.
+Another limitation is that different lawyers are assigned with different difficult cases.
+The degree of difficulty isn\'t implemented into the dataset, which makes it not only hard but unfair to rightly assess the correlation between rank and court success.
+In terms of threat to inference, one of the biggest threats in my opinion would have to be an issue of reverse causality in the sense that your outcome actually changes your rank and not the other way around.
+In the sense that the more wins you get, the higher your rank can be.
+Another threat is that there are other factors that could interfere with the outcome and not just the rank. 
+If I had more time and money, I would put more time into other factors that could affect outcome and the main one that comes to mind is the difficulty of cases.
+I believe that case difficulty was overlooked, but it is one of the most important aspects in legal work.
+With more time and research, I believe that this will have a more accurate description of the relationship between the success in court and the ranks of the appellants and respondents.
